@@ -53,6 +53,9 @@ h1{
   letter-spacing:-.02em;
 }
 .sub{color:var(--dim);font-size:19px;margin:0;max-width:48ch}
+.site-nav{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px}
+.site-nav a{color:var(--paper);text-decoration:none;border:1px solid var(--rule);padding:8px 12px;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:13px}
+.site-nav a:hover{border-color:var(--signal);color:var(--paper)}
 
 /* ---------- toggle ---------- */
 .controls{
@@ -188,6 +191,16 @@ footer{
   <div class="eyebrow">Draft v0.2 — working document</div>
   <h1>The System You're Actually Living In</h1>
   <p class="sub">A plain-English breakdown of debt-based money, where it came from, and why it lands on you the way it does.</p>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="#three-rules">Home</a>
+    <a href="#foundation">Foundation</a>
+    <a href="#measures">Measures</a>
+    <a href="#fed">The Fed</a>
+    <a href="#debt">Debt</a>
+    <a href="#where-it-lands">Where it lands</a>
+    <a href="#what-to-do">What to do</a>
+    <a href="#appendix">Appendix</a>
+  </nav>
 </header>
 
 <div class="controls">
@@ -199,7 +212,7 @@ footer{
 
 <section>
   <div class="part">Read me first</div>
-  <h2>Three rules for this document</h2>
+  <h2 id="three-rules">Three rules for this document</h2>
   <p><strong>Separate mechanics from narrative.</strong> Mechanics are verifiable — money supply figures, interest rates, debt levels. Narrative is the story wrapped around them. Mechanics get stated as fact. Narrative gets labeled as narrative.</p>
   <p><strong>Follow every explanation to the end.</strong> Most public explanations of this system aren't lies. They're true statements that stop right at the point where they still sound fine. The deception is in the stopping.</p>
   <p><strong>No villain required.</strong> Some of this is deliberate. Much of it is accumulated complexity nobody fixes because nobody benefits from fixing it. Conflating the two costs you credibility with exactly the reader you most need to reach.</p>
@@ -208,7 +221,7 @@ footer{
 
 <section>
   <div class="part">Part I — The foundation</div>
-  <h2>Money is created as debt</h2>
+  <h2 id="foundation">Money is created as debt</h2>
   <p class="deck">The single most load-bearing fact in this document.</p>
   <p>When a bank issues you a $300,000 mortgage, it does not move $300,000 from a vault or from other depositors' accounts. It types the number into your account. That money did not exist a second earlier. It does now.</p>
   <ul>
@@ -232,7 +245,7 @@ footer{
 
 <section>
   <div class="part">Part I — continued</div>
-  <h2>What "the economy is doing well" measures</h2>
+  <h2 id="measures">What "the economy is doing well" measures</h2>
   <p><strong>GDP</strong> is total spending and output in a year. <strong>Velocity</strong> is how many times each dollar changes hands. Velocity isn't measured directly — it's derived: <em>GDP ÷ money supply</em>.</p>
   <p>A dollar in your savings account has velocity near zero. From the system's perspective it is doing nothing. A dollar you spend gets re-spent, and again, and again.</p>
   <blockquote><p>Individual thrift is systemically deflationary. What's prudent for you is a drag on the aggregate. That bias isn't a policy accident — it falls directly out of the arithmetic.</p></blockquote>
@@ -247,7 +260,7 @@ footer{
 
 <section>
   <div class="part">Part II — The Fed</div>
-  <h2>Two entirely different money channels</h2>
+  <h2 id="fed">Two entirely different money channels</h2>
   <p class="deck">Most people collapse these into one thing. Keeping them separate is what lets you follow everything downstream.</p>
   <table>
     <tr><th></th><th>Commercial banks</th><th>The Federal Reserve</th></tr>
@@ -262,7 +275,7 @@ footer{
 
 <section>
   <div class="part">Part II — continued</div>
-  <h2>The layer nobody explains: the Fed borrows from banks</h2>
+  <h2 id="fed-layer">The layer nobody explains: the Fed borrows from banks</h2>
   <p>Banks and money market funds park trillions at the Fed, in reserve balances and the reverse repo facility. <strong>The Fed pays them interest on it.</strong> Functionally, banks are lending money to the Fed.</p>
   <p>The Fed holds bonds bought years ago at low yields, while paying interest at current rates. When current rates exceed the portfolio's yield, the Fed runs an operating loss. Reported: roughly <strong>$114B in 2023, $78B in 2024, $19B in 2025.</strong></p>
   <p>It got this large because a bank capital rule — the supplementary leverage ratio — was relaxed during COVID and expired in March 2021. After that, holding reserves became capital-expensive for banks, pushing enormous volume into the reverse repo channel instead.</p>
@@ -272,7 +285,7 @@ footer{
 
 <section>
   <div class="part">Part III — The debt</div>
-  <h2>The debt and the money supply are different numbers</h2>
+  <h2 id="debt">The debt and the money supply are different numbers</h2>
   <p>The national debt is the total stack of outstanding Treasury bonds — a liability. The money supply is dollars actually circulating. They are not the same thing, and who holds the debt determines whether new money was created at all.</p>
   <table>
     <tr><th>Holder</th><th>New money created?</th></tr>
@@ -295,7 +308,7 @@ footer{
 
 <section>
   <div class="part">Part IV — Where it lands</div>
-  <h2>The wage-versus-asset divergence</h2>
+  <h2 id="where-it-lands">The wage-versus-asset divergence</h2>
   <p class="deck">This is the part everything above exists to make legible.</p>
   <p>New money doesn't arrive everywhere at once. It enters through financial markets and credit channels first, reaching asset prices well before it reaches wages.</p>
   <p>If you hold assets, new money inflates your net worth. If you hold only wages, new money inflates your costs. Same policy, opposite outcomes, determined entirely by which side of that line you're standing on.</p>
@@ -311,7 +324,7 @@ footer{
 
 <section>
   <div class="part">Part V — What you do</div>
-  <h2>From understanding to strategy</h2>
+  <h2 id="what-to-do">From understanding to strategy</h2>
   <p class="deck">Understanding without strategy is just better-informed helplessness — and helplessness is exactly why most people reject this information the first time they meet it.</p>
 
   <h3>Get on the asset side of the line</h3>
@@ -330,7 +343,7 @@ footer{
 
 <section>
   <div class="part">Appendix</div>
-  <h2>Why this is hard to explain to people</h2>
+  <h2 id="appendix">Why this is hard to explain to people</h2>
   <p>Expect three responses, none of which are about whether you're correct.</p>
   <p><strong>"That's conspiracy talk."</strong> Most of this is documented in Fed publications, GAO reports, and congressional testimony. Lead with primary sources; citation does the work argument can't.</p>
   <p><strong>"If it were that bad, someone would have fixed it."</strong> The people positioned to fix it are the people the arrangement benefits. Standard collective action problem, not a mystery.</p>
