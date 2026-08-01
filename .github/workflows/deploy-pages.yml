@@ -5,6 +5,12 @@ on:
     branches:
       - drader150-publish-website
 
+# Grant the runner permission to push to gh-pages using the GITHUB_TOKEN
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
