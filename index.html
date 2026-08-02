@@ -31,10 +31,43 @@ body{
 }
 .wrap{max-width:720px;margin:0 auto;padding:0 24px 120px}
 
+/* ---------- nav ---------- */
+nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:var(--ink);
+  border-bottom:1px solid var(--rule);
+  padding:0;
+  overflow-x:auto;
+  white-space:nowrap;
+  scrollbar-width:none;
+}
+nav::-webkit-scrollbar{display:none}
+nav ul{
+  display:inline-flex;
+  gap:0;
+  list-style:none;
+  margin:0;
+  padding:0 16px;
+}
+nav ul li a{
+  display:inline-block;
+  padding:13px 14px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--dim);
+  text-decoration:none;
+  transition:color .15s;
+}
+nav ul li a:hover{color:var(--amber)}
+
 /* ---------- masthead ---------- */
 header{
   border-bottom:1px solid var(--rule);
-  padding:72px 0 40px;
+  padding:64px 0 40px;
   margin-bottom:8px;
 }
 .eyebrow{
@@ -53,14 +86,11 @@ h1{
   letter-spacing:-.02em;
 }
 .sub{color:var(--dim);font-size:19px;margin:0;max-width:48ch}
-.site-nav{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px}
-.site-nav a{color:var(--paper);text-decoration:none;border:1px solid var(--rule);padding:8px 12px;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:13px}
-.site-nav a:hover{border-color:var(--signal);color:var(--paper)}
 
 /* ---------- toggle ---------- */
 .controls{
   position:sticky;
-  top:0;
+  top:43px;
   z-index:20;
   background:linear-gradient(var(--ink) 78%,transparent);
   padding:16px 0 20px;
@@ -93,7 +123,7 @@ body.strategy-on .lamp{background:var(--signal);box-shadow:0 0 10px var(--signal
 body.strategy-on .toggle{color:var(--paper);border-color:var(--signal-dim)}
 
 /* ---------- structure ---------- */
-section{padding:40px 0;border-top:1px solid var(--rule)}
+section{padding:40px 0;border-top:1px solid var(--rule);scroll-margin-top:110px}
 .part{
   font-family:'IBM Plex Mono',monospace;
   font-size:11px;
@@ -171,6 +201,23 @@ body.strategy-on .strategy{display:block;animation:rise .3s ease}
   margin:24px 0;
 }
 
+/* ---------- updates ---------- */
+.update-entry{
+  border-left:2px solid var(--rule);
+  padding:10px 0 10px 18px;
+  margin-bottom:18px;
+}
+.update-date{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  color:var(--amber);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.update-entry p{margin:0;font-size:16px}
+
+/* ---------- footer ---------- */
 footer{
   border-top:1px solid var(--rule);
   margin-top:40px;
@@ -180,28 +227,43 @@ footer{
   color:var(--dim);
   line-height:1.7;
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media (max-width:600px){body{font-size:17px}.wrap{padding:0 18px 80px}h2{font-size:25px}}
+.live-link-box{
+  margin-bottom:20px;
+  padding:14px 16px;
+  border:1px solid var(--signal-dim);
+  background:rgba(93,211,158,.04);
+  border-radius:2px;
+}
+.live-link-box strong{color:var(--signal)}
+.live-link-box a{color:var(--paper);word-break:break-all}
+.live-link-box span{color:var(--dim);font-size:11px;display:block;margin-top:4px}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:600px){body{font-size:17px}.wrap{padding:0 18px 80px}h2{font-size:25px}}
 </style>
 </head>
 <body>
+
+<nav>
+  <ul>
+    <li><a href="#intro">Home</a></li>
+    <li><a href="#foundation">Foundation</a></li>
+    <li><a href="#measures">Measures</a></li>
+    <li><a href="#fed">The Fed</a></li>
+    <li><a href="#debt">Debt</a></li>
+    <li><a href="#where-it-lands">Where it lands</a></li>
+    <li><a href="#what-to-do">What to do</a></li>
+    <li><a href="#updates">Updates</a></li>
+    <li><a href="#appendix">Appendix</a></li>
+  </ul>
+</nav>
+
 <div class="wrap">
 
-<header>
-  <div class="eyebrow">Draft v0.2 — working document</div>
+<header id="intro">
+  <div class="eyebrow">Version 0.4 &nbsp;·&nbsp; August 2026</div>
   <h1>The System You're Actually Living In</h1>
-  <p class="sub">A plain-English breakdown of debt-based money, where it came from, and why it lands on you the way it does.</p>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="#three-rules">Home</a>
-    <a href="#foundation">Foundation</a>
-    <a href="#measures">Measures</a>
-    <a href="#fed">The Fed</a>
-    <a href="#debt">Debt</a>
-    <a href="#where-it-lands">Where it lands</a>
-    <a href="#what-to-do">What to do</a>
-      <a href="#updates">Updates</a>
-      <a href="#appendix">Appendix</a>
-    </nav>
+  <p class="sub">A clear, no-nonsense breakdown of the debt-based fiat monetary system — how it actually works, its real implications, and how to design a personal (or small community) wealth engine by increasing the velocity of and making your money work for you.</p>
 </header>
 
 <div class="controls">
@@ -211,18 +273,18 @@ footer{
   </button>
 </div>
 
-<section>
+<section id="read-me-first">
   <div class="part">Read me first</div>
-  <h2 id="three-rules">Three rules for this document</h2>
+  <h2>Three rules for this document</h2>
   <p><strong>Separate mechanics from narrative.</strong> Mechanics are verifiable — money supply figures, interest rates, debt levels. Narrative is the story wrapped around them. Mechanics get stated as fact. Narrative gets labeled as narrative.</p>
   <p><strong>Follow every explanation to the end.</strong> Most public explanations of this system aren't lies. They're true statements that stop right at the point where they still sound fine. The deception is in the stopping.</p>
   <p><strong>No villain required.</strong> Some of this is deliberate. Much of it is accumulated complexity nobody fixes because nobody benefits from fixing it. Conflating the two costs you credibility with exactly the reader you most need to reach.</p>
   <div class="note">The green blocks are optional. Toggle them off for a clean read of the mechanics alone; toggle them on to see what each mechanism implies for your own decisions.</div>
 </section>
 
-<section>
+<section id="foundation">
   <div class="part">Part I — The foundation</div>
-  <h2 id="foundation">Money is created as debt</h2>
+  <h2>Money is created as debt</h2>
   <p class="deck">The single most load-bearing fact in this document.</p>
   <p>When a bank issues you a $300,000 mortgage, it does not move $300,000 from a vault or from other depositors' accounts. It types the number into your account. That money did not exist a second earlier. It does now.</p>
   <ul>
@@ -244,9 +306,9 @@ footer{
   </div>
 </section>
 
-<section>
+<section id="measures">
   <div class="part">Part I — continued</div>
-  <h2 id="measures">What "the economy is doing well" measures</h2>
+  <h2>What "the economy is doing well" measures</h2>
   <p><strong>GDP</strong> is total spending and output in a year. <strong>Velocity</strong> is how many times each dollar changes hands. Velocity isn't measured directly — it's derived: <em>GDP ÷ money supply</em>.</p>
   <p>A dollar in your savings account has velocity near zero. From the system's perspective it is doing nothing. A dollar you spend gets re-spent, and again, and again.</p>
   <blockquote><p>Individual thrift is systemically deflationary. What's prudent for you is a drag on the aggregate. That bias isn't a policy accident — it falls directly out of the arithmetic.</p></blockquote>
@@ -259,9 +321,9 @@ footer{
   </div>
 </section>
 
-<section>
+<section id="fed">
   <div class="part">Part II — The Fed</div>
-  <h2 id="fed">Two entirely different money channels</h2>
+  <h2>Two entirely different money channels</h2>
   <p class="deck">Most people collapse these into one thing. Keeping them separate is what lets you follow everything downstream.</p>
   <table>
     <tr><th></th><th>Commercial banks</th><th>The Federal Reserve</th></tr>
@@ -272,11 +334,8 @@ footer{
   <p>In quantitative easing, the Fed creates dollars that did not exist and uses them to buy Treasury bonds and mortgage securities. The sellers now hold cash instead of bonds. This is how the Fed's balance sheet went from under $1 trillion to roughly $9 trillion at peak.</p>
   <p>Note carefully: the bond is debt. <strong>The dollars used to buy it are not.</strong> This is the one channel through which genuinely new, non-loan money enters the economy.</p>
   <p>Quantitative tightening runs it backward. The Fed sells assets, buyers pay with existing dollars, and those dollars are extinguished. Deflationary by design.</p>
-</section>
 
-<section>
-  <div class="part">Part II — continued</div>
-  <h2 id="fed-layer">The layer nobody explains: the Fed borrows from banks</h2>
+  <h3>The layer nobody explains: the Fed borrows from banks</h3>
   <p>Banks and money market funds park trillions at the Fed, in reserve balances and the reverse repo facility. <strong>The Fed pays them interest on it.</strong> Functionally, banks are lending money to the Fed.</p>
   <p>The Fed holds bonds bought years ago at low yields, while paying interest at current rates. When current rates exceed the portfolio's yield, the Fed runs an operating loss. Reported: roughly <strong>$114B in 2023, $78B in 2024, $19B in 2025.</strong></p>
   <p>It got this large because a bank capital rule — the supplementary leverage ratio — was relaxed during COVID and expired in March 2021. After that, holding reserves became capital-expensive for banks, pushing enormous volume into the reverse repo channel instead.</p>
@@ -284,9 +343,9 @@ footer{
   <p>Honest framing: this wasn't designed as a cover-up. It's a capital rule colliding with a rate-hiking cycle. But it is also left uncorrected and unexplained, because complexity is politically convenient once it exists. <strong>Unintentional origin; intentional non-correction.</strong></p>
 </section>
 
-<section>
+<section id="debt">
   <div class="part">Part III — The debt</div>
-  <h2 id="debt">The debt and the money supply are different numbers</h2>
+  <h2>The debt and the money supply are different numbers</h2>
   <p>The national debt is the total stack of outstanding Treasury bonds — a liability. The money supply is dollars actually circulating. They are not the same thing, and who holds the debt determines whether new money was created at all.</p>
   <table>
     <tr><th>Holder</th><th>New money created?</th></tr>
@@ -307,9 +366,9 @@ footer{
   <p>At a low, stable rate funding productive assets, it's arguably a reasonable trade. At a high or erratic rate funding extractive spending, it's a wealth transfer from wage-earners to asset-holders. <strong>Same mechanism — the spending quality is the whole difference.</strong></p>
 </section>
 
-<section>
+<section id="where-it-lands">
   <div class="part">Part IV — Where it lands</div>
-  <h2 id="where-it-lands">The wage-versus-asset divergence</h2>
+  <h2>The wage-versus-asset divergence</h2>
   <p class="deck">This is the part everything above exists to make legible.</p>
   <p>New money doesn't arrive everywhere at once. It enters through financial markets and credit channels first, reaching asset prices well before it reaches wages.</p>
   <p>If you hold assets, new money inflates your net worth. If you hold only wages, new money inflates your costs. Same policy, opposite outcomes, determined entirely by which side of that line you're standing on.</p>
@@ -323,9 +382,9 @@ footer{
   </div>
 </section>
 
-<section>
+<section id="what-to-do">
   <div class="part">Part V — What you do</div>
-  <h2 id="what-to-do">From understanding to strategy</h2>
+  <h2>From understanding to strategy</h2>
   <p class="deck">Understanding without strategy is just better-informed helplessness — and helplessness is exactly why most people reject this information the first time they meet it.</p>
 
   <h3>Get on the asset side of the line</h3>
@@ -342,16 +401,22 @@ footer{
   <p>None of this fixes the system. It positions you within it. Anyone promising an exit is selling something.</p>
 </section>
 
-<section>
+<section id="updates">
   <div class="part">Updates</div>
-  <h2 id="updates">Updates</h2>
-  <p class="deck">Recent changes and notes about the document.</p>
-  <p>No updates yet.</p>
+  <h2>What's changed</h2>
+  <div class="update-entry">
+    <div class="update-date">August 2026 — v0.4</div>
+    <p>Subtitle updated to better reflect the document's full purpose. Nav anchor scroll offset corrected so section titles are visible on jump. Footer live-link and version stamp restored.</p>
+  </div>
+  <div class="update-entry">
+    <div class="update-date">August 2026 — v0.1</div>
+    <p>Initial release. Parts I–V covering money creation, the Fed, national debt, wage-vs-asset divergence, and personal strategy. Toggle strategy layer included.</p>
+  </div>
 </section>
 
-<section>
+<section id="appendix">
   <div class="part">Appendix</div>
-  <h2 id="appendix">Why this is hard to explain to people</h2>
+  <h2>Why this is hard to explain to people</h2>
   <p>Expect three responses, none of which are about whether you're correct.</p>
   <p><strong>"That's conspiracy talk."</strong> Most of this is documented in Fed publications, GAO reports, and congressional testimony. Lead with primary sources; citation does the work argument can't.</p>
   <p><strong>"If it were that bad, someone would have fixed it."</strong> The people positioned to fix it are the people the arrangement benefits. Standard collective action problem, not a mystery.</p>
@@ -360,9 +425,15 @@ footer{
 </section>
 
 <footer>
-  Working draft — not financial advice. Every named instrument is an example for<br>
-  independent research, not a recommendation. Verify all figures against primary<br>
-  sources: FRED, Federal Reserve balance sheet releases, Treasury data, GAO reports.
+  <div class="live-link-box">
+    <strong>Always read the latest version:</strong><br>
+    <a href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/" target="_blank">https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/</a>
+    <span>If you're reading a saved copy, tap the link above — this document is updated regularly and a newer version may exist.</span>
+  </div>
+  Not financial advice. Every named instrument is an example for independent research,<br>
+  not a recommendation. Verify all figures against primary sources: FRED,<br>
+  Federal Reserve balance sheet releases, Treasury data, GAO reports.<br><br>
+  <span style="color:var(--amber);">Version 0.4 &nbsp;·&nbsp; August 2026</span>
 </footer>
 
 </div>
