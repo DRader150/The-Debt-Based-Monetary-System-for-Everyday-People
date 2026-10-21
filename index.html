@@ -17,6 +17,7 @@
   --amber:#E0A458;
   --signal:#5DD39E;
   --signal-dim:#1C3A31;
+  --gold:#D4AF37;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -87,7 +88,7 @@ h1{
 }
 .sub{color:var(--dim);font-size:19px;margin:0;max-width:48ch}
 
-/* ---------- toggle ---------- */
+/* ---------- master controls ---------- */
 .controls{
   position:sticky;
   top:43px;
@@ -95,6 +96,9 @@ h1{
   background:linear-gradient(var(--ink) 78%,transparent);
   padding:16px 0 20px;
   margin-bottom:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 .toggle{
   display:inline-flex;
@@ -119,8 +123,10 @@ h1{
   transition:background .18s,box-shadow .18s;
   flex:none;
 }
-body.strategy-on .lamp{background:var(--signal);box-shadow:0 0 10px var(--signal)}
-body.strategy-on .toggle{color:var(--paper);border-color:var(--signal-dim)}
+body.strategy-on .lamp.s-lamp{background:var(--signal);box-shadow:0 0 10px var(--signal)}
+body.strategy-on .toggle.s-toggle{color:var(--paper);border-color:var(--signal-dim)}
+body.deep-on .lamp.d-lamp{background:var(--amber);box-shadow:0 0 10px var(--amber)}
+body.deep-on .toggle.d-toggle{color:var(--paper);border-color:rgba(224,164,88,.35)}
 
 /* ---------- structure ---------- */
 section{padding:40px 0;border-top:1px solid var(--rule);scroll-margin-top:110px}
@@ -191,6 +197,130 @@ body.strategy-on .strategy{display:block;animation:rise .3s ease}
 .strategy p:last-child{margin-bottom:0}
 .strategy em{color:var(--signal);font-style:normal;font-weight:600}
 
+/* ---------- deep-dive blocks ---------- */
+.deep{
+  display:none;
+  border:1px solid rgba(224,164,88,.25);
+  border-left:3px solid var(--amber);
+  background:rgba(224,164,88,.04);
+  padding:20px 22px;
+  margin:20px 0 10px;
+  border-radius:2px;
+}
+body.deep-on .deep{display:block;animation:rise .3s ease}
+.deep .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--amber);
+  display:block;
+  margin-bottom:10px;
+}
+.deep p{font-size:16.5px;margin-bottom:12px}
+.deep p:last-child{margin-bottom:0}
+.deep em{color:var(--amber);font-style:normal;font-weight:600}
+
+/* ---------- inline expanders ---------- */
+details{margin:18px 0}
+details summary{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:.06em;
+  color:var(--dim);
+  cursor:pointer;
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border:1px solid var(--rule);
+  border-radius:2px;
+  transition:color .15s,border-color .15s;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:'▶';font-size:8px;transition:transform .2s}
+details[open] summary::before{transform:rotate(90deg)}
+details summary:hover{color:var(--paper);border-color:var(--signal)}
+details .detail-body{
+  padding:16px 18px;
+  margin-top:8px;
+  border:1px solid var(--rule);
+  border-radius:2px;
+  font-size:16.5px;
+  line-height:1.65;
+}
+
+/* ---------- callout / slogan ---------- */
+.callout{
+  margin:32px 0;
+  padding:20px 24px;
+  border:1px solid var(--amber);
+  border-left:4px solid var(--amber);
+  background:rgba(224,164,88,.06);
+  border-radius:2px;
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--paper);
+}
+
+/* ---------- AI companion note ---------- */
+.ai-companion{
+  margin:28px 0;
+  padding:16px 20px;
+  border:1px solid var(--signal-dim);
+  background:rgba(93,211,158,.04);
+  border-radius:2px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  line-height:1.65;
+  color:var(--dim);
+}
+.ai-companion strong{color:var(--signal);font-weight:600}
+
+/* ---------- resource box ---------- */
+.resource-box{
+  display:none;
+  border:1px solid var(--signal-dim);
+  border-left:3px solid var(--signal);
+  background:rgba(93,211,158,.05);
+  padding:18px 20px;
+  margin:16px 0;
+  border-radius:2px;
+}
+body.strategy-on .resource-box{display:block;animation:rise .3s ease}
+.resource-box .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--signal);
+  display:block;
+  margin-bottom:10px;
+}
+.resource-box p{font-size:15.5px;margin-bottom:10px}
+.resource-box p:last-child{margin-bottom:0}
+.resource-box a{color:var(--signal)}
+
+/* ---------- glossary terms ---------- */
+.glossary-term{
+  margin-bottom:28px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--rule);
+}
+.glossary-term:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.g-word{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--amber);
+  margin-bottom:6px;
+}
+.g-def{margin-bottom:10px}
+
+/* ---------- note ---------- */
 .note{
   font-family:'IBM Plex Mono',monospace;
   font-size:12.5px;
@@ -200,6 +330,26 @@ body.strategy-on .strategy{display:block;animation:rise .3s ease}
   padding:14px 16px;
   margin:24px 0;
 }
+
+/* ---------- timeline ---------- */
+.timeline{margin:22px 0}
+.tl-row{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:12px 20px;
+  padding:12px 0;
+  border-bottom:1px solid var(--rule);
+  font-size:15.5px;
+}
+.tl-row:last-child{border-bottom:none}
+.tl-era{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--amber);
+  padding-top:3px;
+}
+.tl-country{font-weight:600;margin-bottom:3px}
 
 /* ---------- updates ---------- */
 .update-entry{
@@ -239,7 +389,20 @@ footer{
 .live-link-box span{color:var(--dim);font-size:11px;display:block;margin-top:4px}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media(max-width:600px){body{font-size:17px}.wrap{padding:0 18px 80px}h2{font-size:25px}}
+@media(max-width:600px){body{font-size:17px}.wrap{padding:0 18px 80px}h2{font-size:25px}.controls{gap:8px}.tl-row{grid-template-columns:1fr;gap:4px}}
+</style>
+<style>
+.series{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.series-label{width:100%;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8B97A6;margin-bottom:2px}
+.series-item{flex:1 1 180px;display:block;padding:9px 12px;border:1px solid #26313F;border-radius:2px;text-decoration:none;color:#8B97A6;font-size:12.5px;line-height:1.4}
+.series-item b{color:#E0A458;margin-right:4px}
+.series-item small{display:block;font-size:10.5px;opacity:.8;margin-top:2px}
+a.series-item:hover{border-color:#E0A458;color:inherit}
+.series-item.here{border-color:#E0A458;color:inherit}
+.next-box{margin:28px 0 22px;padding:16px 18px;border:1px solid #E0A458;border-radius:2px}
+.next-box .nb-tag{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#E0A458;margin-bottom:6px}
+.next-box a{font-size:19px;font-weight:600;color:inherit}
+.next-box p{margin:6px 0 0;font-size:15px;opacity:.85}
 </style>
 </head>
 <body>
@@ -251,26 +414,40 @@ footer{
     <li><a href="#measures">Measures</a></li>
     <li><a href="#fed">The Fed</a></li>
     <li><a href="#debt">Debt</a></li>
+    <li><a href="#rates">Rates</a></li>
+    <li><a href="#repression">Repression</a></li>
     <li><a href="#where-it-lands">Where it lands</a></li>
+    <li><a href="#assets">Assets</a></li>
+    <li><a href="#reserve-currency">Reserve $</a></li>
     <li><a href="#what-to-do">What to do</a></li>
+    <li><a href="#glossary">Glossary</a></li>
     <li><a href="#updates">Updates</a></li>
     <li><a href="#appendix">Appendix</a></li>
-    <li><a href="https://drader150.github.io/purchasing-power-lens/" target="_blank">Charts</a></li>
+    <li><a href="https://drader150.github.io/purchasing-power-lens/">Charts ↗</a></li>
+    <li><a href="https://drader150.github.io/Monetary-Endgame/">Endgame ↗</a></li>
   </ul>
 </nav>
 
 <div class="wrap">
 
 <header id="intro">
-  <div class="eyebrow">Version 0.4 &nbsp;·&nbsp; August 2026</div>
+  <div class="eyebrow">Version 0.5 &nbsp;·&nbsp; October 2026</div>
   <h1>The System You're Actually Living In</h1>
-  <p class="sub">A clear, no-nonsense breakdown of the debt-based fiat monetary system — how it actually works, its real implications, and how to design a personal (or small community) wealth engine by increasing the velocity of and making your money work for you.</p>
+  <p class="sub">A clear, no-nonsense breakdown of the debt-based fiat monetary system — how it actually works, its real implications, and how to design a personal wealth strategy by understanding the rules everyone else is playing by.</p>
+  <div class="series" role="navigation" aria-label="Series"><div class="series-label">A three-part series · read in order, then loop back</div><span class="series-item here" aria-current="page"><b>1</b> The System You're Actually Living In<small>How it works · you are here</small></span><a class="series-item" href="https://drader150.github.io/purchasing-power-lens/"><b>2</b> Purchasing Power Lens<small>What it's already done</small></a><a class="series-item" href="https://drader150.github.io/Monetary-Endgame/"><b>3</b> Monetary Endgame<small>Where it leads</small></a></div>
 </header>
 
 <div class="controls">
-  <button class="toggle" id="tgl" aria-pressed="false">
-    <span class="lamp" aria-hidden="true"></span>
+  <button class="toggle s-toggle" id="tgl" aria-pressed="false">
+    <span class="lamp s-lamp" aria-hidden="true"></span>
     <span id="tglText">Show strategy notes</span>
+  </button>
+  <button class="toggle d-toggle" id="dtgl" aria-pressed="false">
+    <span class="lamp d-lamp" aria-hidden="true"></span>
+    <span id="dtglText">Show deeper dives</span>
+  </button>
+  <button class="toggle" id="alltgl" aria-pressed="false">
+    <span id="allText">Expand everything</span>
   </button>
 </div>
 
@@ -280,7 +457,11 @@ footer{
   <p><strong>Separate mechanics from narrative.</strong> Mechanics are verifiable — money supply figures, interest rates, debt levels. Narrative is the story wrapped around them. Mechanics get stated as fact. Narrative gets labeled as narrative.</p>
   <p><strong>Follow every explanation to the end.</strong> Most public explanations of this system aren't lies. They're true statements that stop right at the point where they still sound fine. The deception is in the stopping.</p>
   <p><strong>No villain required.</strong> Some of this is deliberate. Much of it is accumulated complexity nobody fixes because nobody benefits from fixing it. Conflating the two costs you credibility with exactly the reader you most need to reach.</p>
-  <div class="note">The green blocks are optional. Toggle them off for a clean read of the mechanics alone; toggle them on to see what each mechanism implies for your own decisions.</div>
+  <div class="note">Green blocks are strategy notes — what each mechanism implies for your own decisions. Amber blocks go deeper on the mechanics. Toggle them on or off with the buttons above; the clean read of the page works without either.</div>
+  <div class="ai-companion">
+    <strong>→ A tip for getting the most out of this document:</strong><br>
+    Pull up your favorite AI while you read — ChatGPT, Gemini, Claude, whatever you prefer. When something doesn't fully click, stop and ask it a question. Keep asking until the idea lands. That loop — read, question, click — gives you the best odds of genuinely understanding this system rather than just feeling like you did.
+  </div>
 </section>
 
 <section id="foundation">
@@ -305,6 +486,18 @@ footer{
     <p><em>If the system must expand, position for expansion.</em> A structure that requires perpetual monetary growth is telling you, in advance, which direction it will move over long horizons. Holding only cash is a bet against the one thing the system cannot allow to stop.</p>
     <p>That doesn't mean pile into risk. It means recognize that "do nothing" is itself an active position — and historically the losing one.</p>
   </div>
+
+  <h3>How we got here: five stages of money</h3>
+  <p>Every stage of monetary history solved the previous stage's main problem — and then introduced a new one.</p>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — five stages</span>
+    <p><strong>Stage 1 — Barter.</strong> Trade what you have for what you need. Problem: you need a "coincidence of wants" — the farmer with extra corn needs to find someone with shoes who wants corn, right now. This breaks down immediately in any complex economy.</p>
+    <p><strong>Stage 2 — Gold (and hard commodity money).</strong> A portable, scarce, universally recognized store of value. Solved the coincidence-of-wants problem. Problem: gold can't teleport. Moving large amounts across distances is slow and dangerous, and supply growth depends on how much you can mine.</p>
+    <p><strong>Stage 3 — Gold-backed dollars.</strong> Paper certificates redeemable for a fixed amount of gold. Solved the portability problem. This era is arguably the healthiest hybrid: money supply growth was tied to gold reserve growth, which kept a natural ceiling on inflation. Problem: the gold link was political, not structural — and politics eventually won. <em>Nixon ended direct dollar-gold convertibility on August 15, 1971.</em></p>
+    <p><strong>Stage 4 — Fiat currency (where we are now).</strong> Money backed by government authority and collective trust. Solved the gold-supply constraint problem, allowing the economy to grow without being bottlenecked by mining. Problem: without a physical anchor, the money supply can be expanded by policy decree — which introduces the interest problem and inflation-as-taxation described in this section.</p>
+    <p><strong>Stage 5 — Bitcoin (emerging).</strong> A mathematically enforced scarcity cap (21 million coins, ever) that no government can override by decree. Designed to solve fiat's inflation problem. Problem: self-custody risk (your keys, your coins — no help desk if you lose them), volatility, and adoption: <em>consensus and network adoption — not the code itself — is the actual scarce ingredient.</em> A technically identical Bitcoin clone built tomorrow would be worthless without the network. This is why easy-to-create forks don't threaten Bitcoin; they actually confirm that the code was never the scarce thing. The same logic applies to government money: the world already has roughly 180 national currencies. Nobody is short of currencies to choose from. Another one, or another Bitcoin, adds nothing unless people agree to use it.</p>
+  </div>
 </section>
 
 <section id="measures">
@@ -314,6 +507,19 @@ footer{
   <p>A dollar in your savings account has velocity near zero. From the system's perspective it is doing nothing. A dollar you spend gets re-spent, and again, and again.</p>
   <blockquote><p>Individual thrift is systemically deflationary. What's prudent for you is a drag on the aggregate. That bias isn't a policy accident — it falls directly out of the arithmetic.</p></blockquote>
   <p>This also kills the naive model that printing money means instant inflation. After 2008 the Fed massively expanded the money supply while velocity collapsed at the same time — and inflation stayed low for over a decade.</p>
+
+  <h3>The velocity problem — and why it matters right now</h3>
+  <p>When the Fed injects liquidity hoping it circulates and stimulates the economy, a portion instead flows into non-circulating stores of value — gold, real estate, Bitcoin — and just sits there. That money isn't doing the stimulative job it was intended for, which means the Fed often has to inject more than the math would suggest in order to hit its targets.</p>
+  <p>Japan is the clearest case study: near-zero and negative rates for <em>decades</em>, specifically designed to make hoarding cash costly and force money into circulation. It largely hasn't worked. Velocity has stayed stubbornly low. Japan's population touched the stove once — the early-1990s asset bubble collapse — and has been deeply risk-averse and deflation-scarred ever since.</p>
+  <p>America keeps touching the stove repeatedly and institutionalizing the burn as policy: the 2008 bank bailouts, COVID-era stimulus. Companies and markets have learned the government will step in, so the risk-taking (and the burning) just keeps repeating rather than teaching caution.</p>
+  <p>China presents a different picture: benchmark rates sit around 3% as of early 2026, well above zero, with real room left to cut. That's more monetary policy runway than Japan or much of Europe has. The catch: they're cutting because they need to — an ongoing property sector crisis and weak domestic consumption. More runway, same underlying disease.</p>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — M2 and the super-cycle theory</span>
+    <p>M2 is the broad measure of money supply: cash, checking and savings deposits, and money market funds. When M2 growth stalls or contracts, that's historically been bearish for risk assets like Bitcoin.</p>
+    <p>In recent cycles, Bitcoin sold off hard even as M2 growth merely slowed — unusual, since historically Bitcoin doesn't sell off until M2 actually contracts. Some analysts (notably Mark Moss) frame this divergence as setting up a next Bitcoin super-cycle: M2 growth resumes, velocity picks up, and the historical pattern reasserts with Bitcoin running first and hardest. Similar conditions preceded the 2015–2017 run that eventually took Bitcoin to $20,000.</p>
+    <p>This is an analytical framework, not a forecast. M2 data is available on FRED (Federal Reserve Economic Data) as series M2SL.</p>
+  </div>
 
   <div class="strategy">
     <span class="tag">Strategy note</span>
@@ -342,6 +548,24 @@ footer{
   <p>It got this large because a bank capital rule — the supplementary leverage ratio — was relaxed during COVID and expired in March 2021. After that, holding reserves became capital-expensive for banks, pushing enormous volume into the reverse repo channel instead.</p>
   <blockquote><p>Every dollar a bank has parked at the Fed earning risk-free interest is a dollar not underwriting a small business loan or a mortgage. The Fed competes with your local economy for the banking system's capital — and wins, because it's risk-free.</p></blockquote>
   <p>Honest framing: this wasn't designed as a cover-up. It's a capital rule colliding with a rate-hiking cycle. But it is also left uncorrected and unexplained, because complexity is politically convenient once it exists. <strong>Unintentional origin; intentional non-correction.</strong></p>
+
+  <h3>Dollar stablecoins: a geopolitical chess move</h3>
+  <p>The GENIUS Act (July 2025) created a regulated framework for dollar-denominated payment stablecoins. Understanding what it does and doesn't allow reveals something bigger than the crypto debate.</p>
+  <p>In countries with unstable currencies — Argentina, Nigeria — citizens were already using dollar stablecoins as a savings escape hatch from local inflation. The GENIUS Act formalizes and expands those rails. From a US policy perspective, this is dollar dollarization via crypto rather than formal adoption: American monetary reach without the diplomatic overhead of formal currency agreements.</p>
+  <p>The nuance: this is good for individual citizens in those countries who want to protect their savings. It's bad for those governments — it drains local bank deposits, strips away monetary policy control, and erodes economic sovereignty. The same tool helps the citizen and undercuts the state.</p>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — who gets the yield</span>
+    <p>The GENIUS Act bans payment stablecoin issuers from paying holders yield on their stablecoin balances. Bank deposit tokens — like JPMorgan's JPMD/Kinexys — and tokenized Treasuries can pay yield. The effect: if you hold a stablecoin, the issuer keeps the yield on the underlying T-bills. If you hold a bank deposit token, you get some of the yield back.</p>
+    <p>Banks are lobbying hard to keep this distinction in place, for an obvious reason: if stablecoins could pay yield, deposits would flee. X Money sidesteps the ban by operating as an FDIC bank deposit — not a token — and advertising up to 6% (promotional, Premium+ gated, standard Premium rate ~4%, via Cross River Bank). It looks like a stablecoin perk; legally it's a bank deposit.</p>
+    <p>The underlying reality: every party in this chain holds substantially the same Treasury bills. The only difference is how much of that T-bill yield they pass through to you versus keep. That's not a crypto story. It's a rent extraction story about who controls the pipe.</p>
+  </div>
+
+  <div class="strategy">
+    <span class="tag">Strategy note</span>
+    <p><em>The yield gap is real and trackable.</em> If you hold cash in a standard savings account, your bank earns the T-bill rate and passes you a fraction. Knowing the gap between what the system earns and what it pays you is the first step toward finding better positions.</p>
+    <p>The self-custody path (holding assets directly rather than through an intermediary) collapses the rent gap entirely — at the cost of taking on the custodial risk yourself. That's a real tradeoff, not a free lunch. More on that in the Assets section.</p>
+  </div>
 </section>
 
 <section id="debt">
@@ -354,8 +578,25 @@ footer{
     <tr><td>Foreign governments</td><td>No — used existing dollars</td></tr>
     <tr><td>US institutions &amp; individuals</td><td>No — used existing dollars</td></tr>
   </table>
+
+  <h3>Treasury bills, notes, and bonds — what's the difference?</h3>
+  <p>All three are loans you make to the US government. The only difference is time:</p>
+  <ul>
+    <li><strong>Bills</strong> — under 1 year. Sold at a discount to face value; you earn the difference. No periodic interest payments.</li>
+    <li><strong>Notes</strong> — 2 to 10 years. Pay interest twice a year.</li>
+    <li><strong>Bonds</strong> — over 10 years. Also pay interest twice a year.</li>
+  </ul>
+  <p>This maturity distinction is the whole mechanism behind the Treasury Twist described later — shorter-term issuance vs. longer-term bonds have very different yield dynamics, and who controls which part of that curve matters enormously.</p>
+
   <p>Given Part I, the debt going up forever isn't the system breaking. It's the system running. Which makes "how do we pay it down" the wrong question, and this the right one:</p>
   <blockquote><p>What are we getting for it?</p></blockquote>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — the dollar debt was essentially never paid down</span>
+    <p>After World War II, America ran brief real budget surpluses. The actual dollar amount of federal debt dropped slightly — from about $242 billion in 1946 to $214 billion by 1949. Then it never meaningfully declined again in raw dollar terms for the rest of the century.</p>
+    <p>Yet the debt-to-GDP ratio fell from 106% in 1946 to 23% by 1974. How? GDP grew much faster than the debt did, partly through real growth and partly through inflation — not because the debt was paid down.</p>
+    <p>This is important because it's often cited as proof that a country can "grow its way out of debt." That's partially true, but the actual dollar debt essentially never shrinks. The real lever is always: is the money being borrowed being spent productively enough to generate more growth than the cost of servicing it?</p>
+  </div>
 
   <h3>Productive debt vs. extractive debt</h3>
   <p><strong>Productive</strong> debt funds things that increase future output — infrastructure, energy capacity, research. It creates the growth that services it.</p>
@@ -367,8 +608,70 @@ footer{
   <p>At a low, stable rate funding productive assets, it's arguably a reasonable trade. At a high or erratic rate funding extractive spending, it's a wealth transfer from wage-earners to asset-holders. <strong>Same mechanism — the spending quality is the whole difference.</strong></p>
 </section>
 
+<section id="rates">
+  <div class="part">Part III — continued</div>
+  <h2>The interest rate floor: how one number sets the price of everything</h2>
+  <p class="deck">The federal funds rate is the baseline everyone else prices against.</p>
+  <p>Three rates that often get conflated:</p>
+  <ul>
+    <li><strong>Federal funds rate</strong> — the rate banks charge each other for overnight loans of reserves. The Fed sets a target range and steers the actual rate into it. This is the system's baseline "floor."</li>
+    <li><strong>Discount rate</strong> — the rate banks pay when they borrow directly from the Fed (as a last resort). Slightly above the funds rate.</li>
+    <li><strong>Overnight rate</strong> — the general name for what short-term lenders charge for one-night loans. The fed funds rate is one of these; the repo market (loans backed by Treasuries as collateral, tracked by a rate called SOFR) is the much larger one. These overnight markets move trillions of dollars a night.</li>
+  </ul>
+  <p><strong>Why a bank can lose its overnight funding.</strong> Many big banks and investment firms pay for long-term holdings with loans that come due the next morning, and they renew those loans every night. Each night the lender decides whether to renew. It only says yes if it trusts two things: the collateral it's holding, and the firm it's lending to. Lose either one and the lender can ask for more collateral, charge more, or stop lending. Because every lender can walk away overnight, the first lender to pull out has a reason to go first, and the rest follow. It's the same thing as a run on a bank, except the people running are other institutions instead of depositors in line.</p>
+  <p>That's what happened to Lehman Brothers in 2008. It was borrowing heavily overnight to hold mortgage-backed securities. When the housing market cracked, lenders stopped trusting what those securities were worth. They demanded more collateral and then stopped renewing. No buyer stepped in and the government didn't rescue it, so Lehman filed for bankruptcy on September 15, 2008. It was a profitable-looking firm on paper that ran out of tomorrow's cash.</p>
+  <p>Why the floor matters: if the government's risk-free short-term rate sits at 3–5%, every other borrower — a small business, a homebuyer, a corporation — has to offer a rate above that floor to attract the same capital. Why would an institution lend to a riskier borrower at 3% when it can buy risk-free Treasuries at 4%? It won't. The floor sets the cost of all credit in the economy.</p>
+  <blockquote><p>When the Fed raises rates, it's not just making mortgages more expensive. It's raising the floor that every loan in the economy prices against. Everything gets more expensive simultaneously.</p></blockquote>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — the Treasury Twist and who controls what</span>
+    <p>The Fed's rate tools work mainly at the short end of the yield curve — overnight and short-term rates. Long-term bond yields (10-year, 30-year) are set by the market: what buyers demand to lock up money for a decade or more.</p>
+    <p>The Treasury Twist refers to a shift in issuance strategy: the Treasury issues more short-term bills (where the Fed has more influence) and either reduces long-bond issuance or buys back existing long bonds. This tries to pull long-term yields down without the Fed having to expand its balance sheet. The Fed controls short; the market controls long. The Treasury Twist is an attempt to borrow some of that market control by changing the supply of what's for sale.</p>
+    <p>This matters for the stablecoin/GENIUS Act picture: the underlying instrument everyone is earning yield on is T-bills. Who gets to pass that yield through to end users, and who keeps it, is a regulatory/lobbying question layered on top of the same pile of short-term government debt.</p>
+  </div>
+</section>
+
+<section id="repression">
+  <div class="part">Part IV — Financial repression</div>
+  <h2>When the system quietly charges you for existing</h2>
+  <p class="deck">Financial repression is when the government keeps interest rates artificially below inflation, so that debt erodes in value over time at everyone else's expense.</p>
+  <p>After World War II, the US debt-to-GDP ratio fell from roughly 106% to 23% over about three decades. Most people assume this means the debt was paid off. It wasn't. The actual dollar amount of debt barely moved for decades.</p>
+  <p>What happened instead: the Fed held interest rates on government bonds below inflation. Savers and bondholders earned yields that didn't keep up with rising prices, so the real value of the debt quietly shrank while the dollar amount stayed flat. Combined with strong postwar growth — the GI Bill, industrial expansion, the suburban boom — the ratio fell dramatically. The debt wasn't paid; it was inflated away at savers' expense.</p>
+
+  <h3>What financial repression felt like then vs. what it would feel like now</h3>
+  <p>The postwar version happened during genuine economic expansion: rising wages, new jobs, new industries. Inflation was quietly eroding savings, but most people had growing incomes inside a real boom. The erosion was hidden inside prosperity.</p>
+  <p>Today's economy runs much more on financial assets than physical production growth. If rates were pinned below inflation now, anyone not holding stocks, real estate, or hard assets would feel the squeeze immediately and visibly — especially savers and retirees on fixed incomes. The same mechanism, a much harsher experience.</p>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — why sophisticated players see it and do nothing</span>
+    <p>Financial repression is invisible in the way bureaucracy is invisible: it shows up as routine Fed language, as yields sitting slightly below inflation on your savings account statement. It doesn't announce itself as a policy choice the way a tax hike does.</p>
+    <p>Sophisticated capital does see it — and routes around it into real assets (stocks, real estate, hard commodities). Ordinary savers holding cash and bonds absorb the erosion without knowing it's happening. It's less that the smart money doesn't understand. It's that the smart money insulates itself while everyone else is the exit.</p>
+    <p>China's quiet trimming of its US Treasury holdings is the large-scale version of this: they see the long-term erosion risk, but can't exit quickly. A large, fast sell-off would crash the price of the very asset they're trying to exit, destroying the value they're trying to preserve before they can get out. The exit only works slowly and quietly. Mass simultaneous selling is self-defeating. So they do what anyone holding a depreciating asset does when they can't sell fast — they hold it and complain quietly.</p>
+  </div>
+
+  <div class="callout">Stop letting the system abuse you.</div>
+
+  <div class="strategy">
+    <span class="tag">Strategy note</span>
+    <p><em>The pre-1971 and post-1971 models run on opposite fuel.</em> Under the gold standard, frugality plus patient long-term ownership was the primary wealth formula. Savings held real value. The best move was to spend less than you earned and own things that produced income.</p>
+    <p>Post-1971 fiat punishes savers (cash erodes) and rewards borrowers (leverage on cash-flowing assets appreciates faster than the debt costs). The formula isn't dead — Ronald Read, the Vermont janitor and gas station attendant who died in 2014 with roughly $8 million in assets, ran the old frugality-and-patience playbook inside the post-1971 world. It still technically works. But inflation works against you the entire time, which means you need exceptional discipline and an unusually long runway. Most people don't have both.</p>
+  </div>
+
+  <h3>Benefits cliffs: the system that punishes climbing</h3>
+  <p>Financial repression is a systemic force that erodes assets slowly and quietly. The benefits cliff is a sharper version that operates at the bottom of the income ladder: it actively discourages people from earning more.</p>
+  <p>Here's the mechanism: public assistance programs — food assistance, healthcare subsidies, housing vouchers, childcare — are designed with income cutoffs. Earn more than the threshold and the benefit cuts off entirely. The problem is those cutoffs are set at amounts where losing the benefit costs more than the raise earns. A $200/month raise can eliminate a $600/month healthcare subsidy. Net result: the person who earned more is worse off.</p>
+  <p>This is not a conspiracy. The design problem is well-documented and well-understood by the people who study it. The real question is why a documented, measurable design flaw that harms the people it's supposed to help has gone uncorrected for decades. Negligence or misaligned incentives — the honest answer is probably both.</p>
+
+  <div class="resource-box">
+    <span class="tag">Resources — benefits cliff tools</span>
+    <p><strong>Atlanta Fed CLIFF Dashboard</strong> — a free tool that models how additional income affects your total benefit package, including at what income levels cliff dropoffs occur in your state. <a href="https://www.atlantafed.org/economic-mobility-and-resilience/advancing-careers-for-low-income-families/cliff-tool" target="_blank">atlantafed.org — CLIFF Tool</a></p>
+    <p><strong>Benefits.gov</strong> — federal resource to find programs you may qualify for. <a href="https://www.benefits.gov" target="_blank">benefits.gov</a></p>
+    <p>If you're trying to move up the income ladder, map your own cliff before you chase a raise. A raise that costs you more than it earns is a trap, not a reward — and you need to see the numbers to avoid it.</p>
+  </div>
+</section>
+
 <section id="where-it-lands">
-  <div class="part">Part IV — Where it lands</div>
+  <div class="part">Part V — Where it lands</div>
   <h2>The wage-versus-asset divergence</h2>
   <p class="deck">This is the part everything above exists to make legible.</p>
   <p>New money doesn't arrive everywhere at once. It enters through financial markets and credit channels first, reaching asset prices well before it reaches wages.</p>
@@ -379,12 +682,110 @@ footer{
     <span class="tag">Strategy note</span>
     <p><em>Getting onto the asset side of the line is the single highest-leverage move available to a normal person.</em> Not because assets are magic, but because the dividing line is structural and you can choose which side you're on.</p>
     <p>The practical version is unglamorous: convert some portion of every paycheck into things that hold value against monetary expansion, automatically, before you can talk yourself out of it. Broad index funds, real assets, hard-capped assets — the category matters more than the pick.</p>
-    <p>Anything specific you hear named — including newer instruments that pay yield backed by hard assets, like Strategy's STRC — is an <em>example to research</em>, not an instruction to follow. Those carry issuer credit risk and can fall hard alongside whatever backs them. The principle transfers. The ticker doesn't.</p>
+  </div>
+</section>
+
+<section id="assets">
+  <div class="part">Part V — continued</div>
+  <h2>Asset classes — what they are and what undermines them</h2>
+  <p class="deck">Each asset class that stores value against monetary expansion has its own set of tools layered on top that can and do blunt the benefit.</p>
+
+  <h3>Real estate</h3>
+  <p>Land and buildings are real, finite, and locally useful. They're also deeply tied into the fiat system through mortgage financing. When the Fed raises rates, home affordability doesn't improve for the buyer — the purchase price drops, but the monthly payment stays similar because the rate went up. Cheap credit inflates prices; expensive credit deflates them. You're not insulated from monetary policy just because you own something physical.</p>
+  <p>Property taxes create a perpetual rent obligation to the government even after the mortgage is paid. Zoning restrictions constrain supply in ways that consistently benefit existing owners. The system has many levers over real estate.</p>
+
+  <h3>Stocks (equities)</h3>
+  <p>Owning a share of a productive company that generates real revenue is one of the cleanest long-term hedges against monetary expansion. Corporate profits tend to track or outpace inflation over time. Broad index funds — owning a slice of the whole market — remove single-company risk and capture that general tendency.</p>
+  <p>The risk: <strong>paper trading and derivatives.</strong> A significant portion of daily stock market volume is not people buying and owning shares. It's contracts tied to shares — futures, options, synthetic positions — that can decouple price from the underlying reality of what the company actually earns. In extreme cases this creates a market for the paper that dwarfs the market for the thing itself.</p>
+
+  <h3>Fine art and other collectibles</h3>
+  <p>Art is genuinely scarce, genuinely portable, and genuinely uncorrelated with financial markets. It's also illiquid and highly specialized knowledge to evaluate.</p>
+  <p>The relevant tactic for this document: the <em>stepped-up basis</em> on inheritance. If you buy art at $50,000 and it appreciates to $500,000, and you hold it until death, your heirs inherit it with their cost basis reset to $500,000 — the market value at the time of inheritance. If they then sell it at $500,000, they owe essentially no capital gains. This is legal, widely used by wealthy families, and a genuine tax advantage on appreciated assets that passes under most public discussion.</p>
+
+  <h3>Gold</h3>
+  <p>Gold has been a store of value for thousands of years and has outperformed cash in every significant inflation environment in recorded history. Its limits are also real and worth stating plainly.</p>
+  <ul>
+    <li><strong>Portability under duress.</strong> Moving significant amounts of physical gold is a logistical problem. Someone evacuating quickly — from danger, from a deteriorating situation — cannot easily carry meaningful wealth in gold. There are documented cases of gold being left behind or confiscated during forced evacuations.</li>
+    <li><strong>Confiscation risk.</strong> In 1933, President Roosevelt signed Executive Order 6102, requiring US citizens to turn in their privately held gold to the Federal Reserve at a fixed price. This is not ancient history — it's a precedent that exists.</li>
+    <li><strong>Supply responds to price.</strong> New gold is mined every year, adding roughly 1.5–2% to the existing supply. More important, higher prices call up more supply. When gold rises, deposits that weren't worth digging become profitable, idle mines restart, and people sell old jewelry and scrap for recycling. New mines take years to open, so the response is slow, but it pushes against a rising price. In effect, gold's success funds the supply that caps its success.</li>
+    <li><strong>Bitcoin is built to ignore price.</strong> When Bitcoin's price rises, more miners join too, but the network automatically raises the mining difficulty about every two weeks so new coins keep arriving on the same fixed schedule. More miners make the network more secure; they don't create more bitcoin. The issuance rate halves roughly every four years toward a hard cap of 21 million. This one design choice is the core of the scarcity difference between the two.</li>
+    <li><strong>Buy/sell spread.</strong> Physical gold dealers typically charge a premium over spot price when you buy, and pay you below spot when you sell. Both are real costs.</li>
+  </ul>
+  <p>Gold's genuine jobs: low-volatility ballast in a portfolio, and the analog fallback in a scenario where digital networks are unavailable or compromised. It does those jobs well. It is not the same job as the growth/appreciation objective.</p>
+
+  <h3>Bitcoin</h3>
+  <p>Bitcoin solves specific problems that gold cannot: digital native portability, mathematically enforced scarcity, self-custody without a physical object to move or protect, and peer-to-peer transfer with no dealer spread.</p>
+  <p><strong>Portability under duress</strong> is a genuine advantage. The entire value of a Bitcoin wallet can be memorized as a 12-word seed phrase. Crossing a border, evacuating danger — the value travels in your memory with no weight, no physical form, no checkpoint seizure risk.</p>
+  <p><strong>What the market cap data shows:</strong> Bitcoin's market cap has grown from essentially zero in 2009 to a meaningful fraction of gold's much larger market cap. How fast that gap closes is a real, trackable metric. Sites like companiesmarketcap.com list both side by side.</p>
+  <p><strong>The honest cons — not undersold:</strong></p>
+  <ul>
+    <li><strong>Self-custody risk.</strong> Your keys are your coins, and there is no help desk. Lost seed phrases, hacked hardware wallets, irreversible transaction errors — these happen and cannot be undone. There is no equivalent of disputing a fraudulent charge with your bank. Recent hardware wallet security compromises have cost victims hundreds of millions of dollars.</li>
+    <li><strong>Volatility.</strong> Bitcoin has historically experienced drawdowns of 70–80% from peak to trough within a single cycle. This is not a place to put money you cannot afford to wait out.</li>
+    <li><strong>Cycle patience.</strong> The thesis is that holding through a full ~4-year cycle (roughly aligned with Bitcoin's halving schedule) has historically meant that even someone who bought at a cycle top was at or above breakeven at the next top. But the cycle could lengthen or change, and this is a track record of one asset over a short timeline — not a guaranteed pattern.</li>
+  </ul>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — Bitcoin vs. gold: the jobs comparison</span>
+    <p>These are not competing for the same role. Gold is ballast: low volatility, multi-thousand-year track record, recognized globally without any infrastructure. In a scenario where digital networks go down — mass power outage, coordinated attack — physical gold still works as a medium of exchange in a way Bitcoin literally cannot if the network is down.</p>
+    <p>Bitcoin is the growth/opt-out asset: capped supply, highest-performing major asset class over the past decade by a significant margin, and a genuine exit from the fiat system's inflation mechanism rather than a hedge within it.</p>
+    <p>If you're deciding between them: they're not an either/or. The question is what job you need done. Insurance ballast? Gold does that. Outpacing monetary expansion over a 4-10 year horizon? The historical case for Bitcoin is stronger. Both? Many people hold both, for different reasons.</p>
+    <p>One comparison point that rarely gets discussed: peer-to-peer transfer. If you want to send gold to someone across the country, you need a trusted intermediary to verify it isn't fake (lead plated in gold is a real fraud vector), add the dealer spread, and deal with the logistics. Bitcoin transfers peer-to-peer with a network fee that is often a few dollars regardless of amount. No dealer spread, no verification problem, no logistics. The friction difference is real.</p>
+  </div>
+
+  <div class="strategy">
+    <span class="tag">Strategy note</span>
+    <p><em>Category first, specific instrument second.</em> The pattern: broad index funds for equity exposure, real estate for local cash flow and inflation hedge, some allocation to hard-capped assets (gold and/or Bitcoin) sized for your actual volatility tolerance. Automate the contribution so it happens before you can rationalize not doing it.</p>
+    <p>Anything named specifically — including newer instruments that pay yield backed by hard assets — is an example for independent research, not an instruction to follow. Every one of those carries issuer credit risk and can fall hard alongside whatever backs it. The principle transfers. The ticker doesn't.</p>
+    <p>And if you do nothing: "do nothing" is itself an active position — you're holding cash, which is a bet against the one thing the system cannot allow to stop. Know which position you're in, even if you choose it.</p>
+  </div>
+</section>
+
+<section id="reserve-currency">
+  <div class="part">Part VI — The global picture</div>
+  <h2>Reserve currency: how long does the dollar's reign last?</h2>
+  <p class="deck">Every empire that issued the world's dominant currency eventually wasn't.</p>
+  <p>The world reserve currency shifts over centuries, and the timeline is fairly consistent:</p>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-era">1450–1530</div>
+      <div><div class="tl-country">Portugal</div>Controlled the sea trade routes to Africa and Asia, making Lisbon the hub of early global commerce.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-era">1530–1640</div>
+      <div><div class="tl-country">Spain</div>Massive silver imports from the Americas. The Spanish silver dollar ("piece of eight") became the first coin used worldwide.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-era">1640–1720</div>
+      <div><div class="tl-country">Netherlands</div>Amsterdam became the financial center of Europe; the Dutch guilder dominated trade.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-era">1720–1815</div>
+      <div><div class="tl-country">France</div>Continental trade dominance with the French livre, though Britain contested this throughout.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-era">1815–1920</div>
+      <div><div class="tl-country">Great Britain</div>The British pound dominated global finance well into the 20th century — sterling remained relevant into WWII, even after the US had already overtaken Britain economically and militarily. Handoffs are messy, not instant.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-era">1921–today</div>
+      <div><div class="tl-country">United States</div>Formalized at Bretton Woods (1944). ~80 years in as of 2026. Average reign above: roughly 80–110 years.</div>
+    </div>
+  </div>
+
+  <p>The US has held the position for about 80 years. Average tenure in this table is roughly 80–110 years. Reserve currency status tends to follow trade and economic dominance most directly, with military strength reinforcing and protecting that position rather than being the primary root cause. Note that Britain is the clearest exception: sterling's currency dominance outlasted Britain's peak military and industrial strength by decades.</p>
+  <blockquote><p>This does not predict a specific endpoint. It does suggest that "the dollar will be the reserve currency forever" is not a claim with good historical support.</p></blockquote>
+  <div class="note">Where could this go next? That's the forward-looking question this document deliberately stays out of. It's taken up in Part 3 of the series, <a href="https://drader150.github.io/Monetary-Endgame/" style="color:var(--amber)">Monetary Endgame</a>.</div>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — the parallel for today</span>
+    <p>In the late 19th century, the global monetary system shifted toward the gold standard. China remained on silver and resisted the shift. As silver prices fell relative to gold, China's purchasing power against gold-standard trading partners eroded, contributing to decades of economic decline. China was eventually forced off silver in the 1930s.</p>
+    <p>The parallel some analysts draw to today: the world is shifting toward harder monetary standards, potentially toward a Bitcoin or gold-and-Bitcoin anchor, while some large nations are building their gold reserves primarily. Whether this echoes the silver-to-gold transition is speculation, not forecast. But the historical pattern of nations that miss a monetary transition paying for it in purchasing power is well-documented.</p>
   </div>
 </section>
 
 <section id="what-to-do">
-  <div class="part">Part V — What you do</div>
+  <div class="part">Part VII — What you do</div>
   <h2>From understanding to strategy</h2>
   <p class="deck">Understanding without strategy is just better-informed helplessness — and helplessness is exactly why most people reject this information the first time they meet it.</p>
 
@@ -398,16 +799,136 @@ footer{
   <h3>Build circulation you control</h3>
   <p>The same principle that makes domestic debt-holding better than foreign holding applies at personal scale: value that stays inside a loop compounds within that loop. Direct exchange, local networks, skills traded rather than purchased. It works on trust and visibility — both of which degrade as the loop grows.</p>
 
+  <h3>An example of financial engineering: the Strategy capital stack</h3>
+  <p>Michael Saylor's company Strategy (formerly MicroStrategy, MSTR) has built one of the more unusual capital structures in public markets as a worked example of layered financial instruments. Understanding it illustrates how sophisticated players engineer exposure to an asset while managing the risk of a prolonged downturn.</p>
+  <p>The machine has four main parts: cash, Bitcoin, MSTR common stock, and a set of preferred stocks — STRC, STRD, STRF, and STRK. Each is a different lever:</p>
+
+  <div class="deep">
+    <span class="tag">Deeper dive — how the MSTR capital stack works</span>
+    <p><strong>The master gauge: mNAV.</strong> This is the ratio of the company's market cap to the value of its Bitcoin holdings. When mNAV is high (the stock trades at a premium to the Bitcoin it holds), selling common shares to buy more Bitcoin is accretive — each new share raised more than its dilutive cost in Bitcoin terms. When mNAV is low, that lever closes.</p>
+    <p><strong>Preferred stocks</strong> (STRC, STRD, STRF, STRK) are lower in the capital stack — they get paid before common shareholders in a liquidation. They're designed to generate yield and stay solvent through a Bitcoin drought without forcing a Bitcoin sale.</p>
+    <p><strong>STRC's ratchet mechanism</strong> is a specific example worth noting: if STRC trades below $95, the dividend rate rises by 0.5%. Since launching at roughly 9% in July 2025, it had climbed to around 12% by the time of this writing as the price dipped below the $95 anchor. Strategy also buys back STRC when it trades at a discount, defending the $100 par price. The ratchet and the buybacks together are designed to prevent a spiral where falling price triggers investor exit which drives the price further down.</p>
+    <p><strong>Bitcoin is the last resort valve.</strong> The company would sell Bitcoin only after all other levers have been pulled. The goal: survive a multi-year Bitcoin bear market without liquidating the core position, then benefit disproportionately from the next bull cycle through remaining high mNAV.</p>
+    <p><strong>The Treasury parallel.</strong> What Strategy does and what the US Treasury does are cousins: both fund buybacks of their own paper by issuing other paper. The Treasury sells short-term bills to buy back long bonds (the Twist). Strategy sells MSTR common to buy back STRC preferred. Neither can print money the way the Fed can. The Saylor version is arguably easier to understand first, which makes it a useful entry point for understanding the Treasury mechanics.</p>
+    <p>This is an example of financial engineering at work — not a recommendation to invest in any of these instruments. Each carries specific risk profiles. Research independently.</p>
+  </div>
+
   <h3>The honest limit</h3>
   <p>None of this fixes the system. It positions you within it. Anyone promising an exit is selling something.</p>
+</section>
+
+<section id="glossary">
+  <div class="part">Reference</div>
+  <h2>Glossary</h2>
+  <p class="deck">Key terms used in this document, with plain-language definitions first and expanded context available below each one.</p>
+
+  <div class="glossary-term">
+    <div class="g-word">Derivatives</div>
+    <p class="g-def">Financial contracts whose value is <em>derived from</em> an underlying asset — a stock, a commodity, a currency, an index. The derivative is not the thing itself; it's an agreement based on what the thing does. Options and futures are the most common types.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>Think of a derivative like a side bet on a sporting event. The game is happening regardless of whether you placed the bet. The bet's value depends entirely on the game's outcome, but the game doesn't depend on the bet. Now imagine there are 10,000 bets placed on one game. The volume of bets can dwarf the actual game's economic stakes without changing anything about the game itself.</p>
+        <p>In financial markets, derivatives markets often trade in volumes that dwarf the underlying physical market. This can create situations where the price of the derivative starts influencing the perceived price of the underlying — particularly in thinly traded commodity markets, where "paper gold" (gold futures and contracts) dwarfs actual physical gold delivery. China restricted its domestic gold market to physical trading specifically to sidestep this dynamic.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Futures</div>
+    <p class="g-def">A specific type of derivative: a contract to buy or sell an asset at a predetermined price on a specific future date. Both parties are obligated to complete the transaction. Used by producers and consumers to lock in prices, and by traders to speculate on price direction.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>A farmer growing wheat knows their harvest comes in October. They don't know what wheat will sell for in October. They can sell a futures contract in April that locks in today's price for October delivery — now they know their revenue regardless of what the market does. The buyer (maybe a bread company) gets price certainty too. Both sides removed uncertainty, which is the legitimate use of futures.</p>
+        <p>The speculative use: a trader with no wheat and no bread company buys and sells futures purely to profit from price movements, with no intention of ever touching actual wheat. This is the majority of futures volume. It's not inherently harmful, but it does mean most futures volume is disconnected from the physical commodity.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Paper trading</div>
+    <p class="g-def">Plain-English term for trading financial instruments tied to an asset without ever owning or moving the actual physical asset. When you buy a gold ETF, you own paper representing gold. When you buy a gold futures contract, you own a promise about gold. Neither involves ever touching physical gold.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>Paper trading matters because it allows the price of an asset to be influenced — some argue manipulated — without changing the supply of the physical asset at all. If 10 times more "gold" is being traded as paper contracts than physically exists, the paper market sets the price that physical buyers and sellers reference, even though those buyers and sellers would face a very different market if they tried to actually take delivery of physical gold at those prices.</p>
+        <p>This is distinct from practicing trading in a simulated account (also sometimes called "paper trading"), which just means trading with play money to learn. Context tells you which use is meant.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Commodities</div>
+    <p class="g-def">Raw or primary goods that are largely interchangeable regardless of who produced them: oil, natural gas, gold, silver, wheat, corn, coffee, copper. A barrel of West Texas crude from one well is treated as equivalent to a barrel from another. This standardization is what makes them tradeable on open markets.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>Commodities matter in the monetary context because they're the layer closest to physical reality in the financial system — the actual things economies run on. When monetary expansion or supply chain stress drives commodity prices up, that's often where inflation first shows up visibly, as gas and grocery prices. It's also why commodity exposure — through energy stocks, agricultural companies, or physical precious metals — is a common inflation hedge.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">NIRP — Negative Interest Rate Policy</div>
+    <p class="g-def">When a central bank sets its benchmark interest rate below zero. Instead of earning interest for depositing money, banks pay the central bank to hold their reserves. The intent: make holding cash costly enough to force money into circulation — lending, spending, or investment.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>Japan and several European countries (Switzerland, Sweden, Denmark) implemented negative rates at various points in the 2010s. The expected effect — banks passing negative rates to customers, which forces spending — largely didn't materialize. Banks absorbed the negative rates on reserves rather than charging depositors, and consumers/businesses found other ways to save rather than spend.</p>
+        <p>The velocity of money stubbornly stayed low even with NIRP in place. It's the bluntest version of the Fed's toolbox for the velocity problem — and the evidence suggests it doesn't work well in practice. The question of whether the US might eventually move toward NIRP if normal rate cuts aren't sufficient to sustain growth is an open one in monetary policy circles.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Seigniorage</div>
+    <p class="g-def">The profit a government earns from the difference between the cost of producing money and the face value of that money. More broadly used to describe the wealth transfer that happens when the government expands the money supply — existing holders of dollars are diluted while the government captures the purchasing power of the new money.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>If it costs $0.02 to print a $1 bill, the government earns $0.98 in seigniorage. In the fiat era, the relevant version is subtler: when the Fed buys $1 trillion in bonds by creating new dollars, those new dollars dilute the purchasing power of every existing dollar. The government funded real spending; existing dollar holders paid for it through reduced purchasing power. That dilution is the modern form of seigniorage.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">mNAV (Market Value to Net Asset Value)</div>
+    <p class="g-def">A ratio comparing a company's market capitalization to the net value of the assets it holds. Used specifically to describe Strategy/MSTR: if the company holds $10B in Bitcoin but its stock market cap is $15B, its mNAV is 1.5. An mNAV above 1 means investors are paying a premium over the underlying asset value — they believe the company is worth more than its assets alone.</p>
+    <details>
+      <summary>Example &amp; extended context</summary>
+      <div class="detail-body">
+        <p>mNAV above 1 is the condition that makes Strategy's "accretive dilution" strategy work: if the stock trades at a 50% premium to its Bitcoin NAV, selling new shares and buying Bitcoin actually increases the Bitcoin-per-share ratio for existing holders. Counterintuitively, diluting the share count can be accretive when done at a premium. When mNAV falls toward 1, that lever closes and the company must rely on other parts of the capital stack.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Financial repression</div>
+    <p class="g-def">When a government or central bank holds interest rates artificially below inflation, so that the real value of debt erodes over time at the expense of savers and bondholders. The mechanism used after WWII to bring the debt-to-GDP ratio down without actually paying the debt down.</p>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Velocity of money</div>
+    <p class="g-def">How many times each dollar changes hands in a given year. Derived, not directly measured: GDP ÷ Money Supply. High velocity means money is circulating actively. Low velocity means money is sitting in savings, financial accounts, or stores of value rather than flowing through the real economy.</p>
+  </div>
+
+  <div class="glossary-term">
+    <div class="g-word">Stepped-up basis</div>
+    <p class="g-def">A tax provision that resets an inherited asset's cost basis to its fair market value at the time of the previous owner's death. If you inherit art worth $500,000 that was originally purchased for $50,000, your cost basis is $500,000. Sell it immediately and you owe no capital gains tax on the $450,000 of appreciation that occurred during the previous owner's lifetime.</p>
+  </div>
 </section>
 
 <section id="updates">
   <div class="part">Updates</div>
   <h2>What's changed</h2>
   <div class="update-entry">
+    <div class="update-date">October 2026 — v0.5</div>
+    <p>Major content expansion: five-stage monetary evolution; federal funds/overnight/discount rate distinction; financial repression and post-WWII debt paydown mechanics; benefits cliff section with resources; gold vs. Bitcoin jobs comparison; asset classes section (real estate, equities, fine art, gold, Bitcoin) with honest cons; world reserve currency timeline; M2/velocity section; Japan/America/China comparison; Strategy/MSTR capital stack example; Treasury bills/notes/bonds distinction; dollar stablecoins as geopolitical tool (GENIUS Act); glossary with inline expanders; second "deeper dive" toggle layer added throughout; "stop letting the system abuse you" callout; AI companion reading tip.</p>
+  </div>
+  <div class="update-entry">
     <div class="update-date">August 2026 — v0.4</div>
-    <p>Subtitle updated to better reflect the document's full purpose. Nav anchor scroll offset corrected so section titles are visible on jump. Footer live-link and version stamp restored.</p>
+    <p>Subtitle updated to better reflect the document's full purpose. Nav anchor scroll offset corrected. Footer live-link and version stamp restored.</p>
   </div>
   <div class="update-entry">
     <div class="update-date">August 2026 — v0.1</div>
@@ -423,31 +944,72 @@ footer{
   <p><strong>"If it were that bad, someone would have fixed it."</strong> The people positioned to fix it are the people the arrangement benefits. Standard collective action problem, not a mystery.</p>
   <p><strong>Emotional shutdown.</strong> The most common and the most misread. What looks like denial is usually self-protection — accepting the analysis means accepting reduced agency, and people reject conclusions that imply helplessness.</p>
   <blockquote><p>This is why the strategy section isn't optional. Diagnosis without agency reliably produces rejection. Lead with what someone can do, and the analysis becomes survivable.</p></blockquote>
+
+  <h3>Verify everything here against primary sources</h3>
+  <p>FRED (Federal Reserve Economic Data) — fred.stlouisfed.org — has historical data for M2, velocity, debt-to-GDP, and most figures in this document. Federal Reserve balance sheet releases and Treasury Department data cover the Fed operating loss figures and Treasury issuance. GAO reports cover spending audits. When something here contradicts what you see in a primary source, trust the primary source and let us know.</p>
 </section>
 
 <footer>
+  <div class="next-box"><div class="nb-tag">Next in the series · Part 2</div><a href="https://drader150.github.io/purchasing-power-lens/">Purchasing Power Lens →</a><p>You now know how the system works. See what it has already done: everyday prices in dollars, gold, and bitcoin, side by side.</p></div>
   <div class="live-link-box">
     <strong>Always read the latest version:</strong><br>
     <a href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/" target="_blank">https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/</a>
     <span>If you're reading a saved copy, tap the link above — this document is updated regularly and a newer version may exist.</span>
   </div>
-  <a href="https://drader150.github.io/purchasing-power-lens/" target="_blank" style="color:var(--amber)">Purchasing Power Lens (charts)</a><br><br>
+  <a href="https://drader150.github.io/purchasing-power-lens/" target="_blank" style="color:var(--amber)">Purchasing Power Lens (charts) ↗</a><br><br>
   Not financial advice. Every named instrument is an example for independent research,<br>
   not a recommendation. Verify all figures against primary sources: FRED,<br>
   Federal Reserve balance sheet releases, Treasury data, GAO reports.<br><br>
-  <span style="color:var(--amber);">Version 0.4 &nbsp;·&nbsp; August 2026</span>
+  <span style="color:var(--amber);">Version 0.5 &nbsp;·&nbsp; October 2026</span>
 </footer>
 
 </div>
+
 <script>
 (function(){
-  var b=document.body,t=document.getElementById('tgl'),x=document.getElementById('tglText');
-  t.addEventListener('click',function(){
-    var on=b.classList.toggle('strategy-on');
-    t.setAttribute('aria-pressed',on);
-    x.textContent=on?'Hide strategy notes':'Show strategy notes';
+  var b = document.body;
+
+  // strategy toggle
+  var t = document.getElementById('tgl');
+  var tText = document.getElementById('tglText');
+  t.addEventListener('click', function(){
+    var on = b.classList.toggle('strategy-on');
+    t.setAttribute('aria-pressed', on);
+    tText.textContent = on ? 'Hide strategy notes' : 'Show strategy notes';
+  });
+
+  // deep dive toggle
+  var d = document.getElementById('dtgl');
+  var dText = document.getElementById('dtglText');
+  d.addEventListener('click', function(){
+    var on = b.classList.toggle('deep-on');
+    d.setAttribute('aria-pressed', on);
+    dText.textContent = on ? 'Hide deeper dives' : 'Show deeper dives';
+    sync();
+  });
+
+  // master expand / collapse
+  var a = document.getElementById('alltgl');
+  var aText = document.getElementById('allText');
+  function sync(){
+    var all = b.classList.contains('strategy-on') && b.classList.contains('deep-on');
+    a.setAttribute('aria-pressed', all);
+    aText.textContent = all ? 'Collapse everything' : 'Expand everything';
+  }
+  t.addEventListener('click', sync);
+  a.addEventListener('click', function(){
+    var open = !(b.classList.contains('strategy-on') && b.classList.contains('deep-on'));
+    b.classList.toggle('strategy-on', open);
+    b.classList.toggle('deep-on', open);
+    t.setAttribute('aria-pressed', open);
+    d.setAttribute('aria-pressed', open);
+    tText.textContent = open ? 'Hide strategy notes' : 'Show strategy notes';
+    dText.textContent = open ? 'Hide deeper dives' : 'Show deeper dives';
+    document.querySelectorAll('details').forEach(function(el){ el.open = open; });
+    sync();
   });
 })();
 </script>
+
 </body>
 </html>
